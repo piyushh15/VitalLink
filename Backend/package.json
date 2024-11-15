@@ -2,7 +2,7 @@
   "name": "cloud",
   "version": "1.0.0",
   "description": "A backend for IOT enabled patient health monitoring system.",
-  "main": "index.js",
+  "main": "src/index.js",
   "type": "module",
   "scripts": {
     "dev": "nodemon src/index.js",

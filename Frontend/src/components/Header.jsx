@@ -19,7 +19,7 @@ const HomePageNav = () => {
   return (
     <div className="relative">
       <Link to="/signup">
-        <Signup />
+        <SignUp />
       </Link>
       <Link to="/login">
         <Login />
@@ -90,7 +90,7 @@ const Login = () => {
   );
 };
 
-const Signup = () => {
+const SignUp = () => {
   return (
     <button className="bg-iot-blue hover:bg-blue-600 text-white mx-2 px-4 py-2 rounded-lg">
       Sign Up

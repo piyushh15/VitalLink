@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import HomePage from './components/HomePage';
 
 import Login from './AuthForms/Login';
-import SignUp from './AuthForms/Signup';
+import SignUp from './AuthForms/SignUp';
 
 import DoctorPanel from './Panel/DoctorPanel';
 import AdminPanel from './Panel/AdminPanel';

@@ -44,7 +44,7 @@ const AdminPanelDoctors = () => {
     };
 
     const reqOptions = {
-      url: "http://localhost:8000/api/v1/hospital/remove-doctor",
+      url: `${process.env.BACKEND_API}/hospital/remove-doctor`,
       method: "DELETE",
       headers: headersList,
       data: JSON.stringify({ doctor_id: doctorToDismiss._id }),

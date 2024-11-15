@@ -19,7 +19,7 @@ const DoctorPanel = () => {
         Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
       };
       const reqOptions = {
-        url: "http://localhost:8000/api/v1/users/current-user",
+        url: `${process.env.BACKEND_API}/users/current-user`,
         method: "GET",
         headers: headerList,
       };

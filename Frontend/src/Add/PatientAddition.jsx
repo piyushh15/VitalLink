@@ -23,13 +23,13 @@ const PatientAddition = ({ handleClose }) => {
 
       try {
         const sensorsResponse = await axios.get(
-          "http://localhost:8000/api/v1/hospital/get-all-sensors",
+          `${process.env.BACKEND_API}/hospital/get-all-sensors`,
           { headers: headersList }
         );
         setSensorIds(sensorsResponse.data.data);
 
         const doctorsResponse = await axios.get(
-          "http://localhost:8000/api/v1/hospital/get-reg-doctors",
+          `${process.env.BACKEND_API}/hospital/get-reg-doctors`,
           { headers: headersList }
         );
         setDoctors(doctorsResponse.data.data);
@@ -85,7 +85,7 @@ const PatientAddition = ({ handleClose }) => {
     try {
       //send to addpatient route
       let reqOptions1={
-        url: "http://localhost:8000/api/v1/hospital/add-patient",
+        url: `${process.env.BACKEND_API}/hospital/add-patient`,
         method: "POST",
         headers: headersList,
         data: payloadforAddPatient,
@@ -97,7 +97,7 @@ const PatientAddition = ({ handleClose }) => {
       if (assignDoctor) {
         //send to assignDoctor
         let reqOptions={
-          url: `http://localhost:8000/api/v1/hospital/assign-doctor`,
+          url: `${process.env.BACKEND_API}/hospital/assign-doctor`,
           method: "POST",
           headers: headersList,
           data: {

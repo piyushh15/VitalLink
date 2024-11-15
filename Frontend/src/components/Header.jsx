@@ -61,7 +61,7 @@ const Logout = () => {
       "Authorization":`Bearer ${accessToken}`,
     }
     let reqOptions = {
-      url: "http://localhost:8000/api/v1/users/logout",
+      url: `${process.env.BACKEND_API}/users/logout`,
       method: "POST",
       headers: headersList,
     }
@@ -120,7 +120,7 @@ const AddPatients = () => {
         Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
       };
       const reqOptions = {
-        url: "http://localhost:8000/api/v1/users/current-user",
+        url: `${process.env.BACKEND_API}/users/current-user`,
         method: "GET",
         headers: headerList,
       };
@@ -150,7 +150,7 @@ const AddPatients = () => {
       };
   
       const reqOptions = {
-        url: `http://localhost:8000/api/v1/doctor/${actionType === 'add' ? 'add-patient' : 'remove-patient'}`,
+        url: `${process.env.BACKEND_API}/doctor/${actionType === 'add' ? 'add-patient' : 'remove-patient'}`,
         method: actionType === 'add' ? "POST" : "DELETE",
         headers: headersList,
         data: patientData,
@@ -205,7 +205,7 @@ const AddPatients = () => {
       };
 
       const reqOptions = {
-        url: `http://localhost:8000/api/v1/hospital/get-admitted-patients?user_id=${e.target.value}`,
+        url: `${process.env.BACKEND_API}/hospital/get-admitted-patients?user_id=${e.target.value}`,
         method: "GET",
         headers: headersList,
       };

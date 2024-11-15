@@ -10,7 +10,7 @@ const Login = () => {
 const handleSubmit = async (e) => {
   e.preventDefault();
   try {
-    const response = await axios.post("http://localhost:8000/api/v1/users/login", credentials, {
+    const response = await axios.post(`${process.env.BACKEND_API}/users/login`, credentials, {
       headers: {
         'Content-Type': 'application/json',
       },

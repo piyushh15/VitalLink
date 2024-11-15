@@ -19,22 +19,22 @@ const DoctorAddition = ({ handleclose }) => {
           Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
         };
         let reqOptions1 = {
-          url: "http://localhost:8000/api/v1/hospital/get-doctors",
+          url: `${process.env.BACKEND_API}/hospital/get-doctors`,
           method: "GET",
           headers: headersList,
         };
         let reqOptions2 = {
-          url: "http://localhost:8000/api/v1/hospital/get-reg-doctors",
+          url: `${process.env.BACKEND_API}/hospital/get-reg-doctors`,
           method: "GET",
           headers: headersList,
         };
-  
+
         let response1 = await axios.request(reqOptions1);
         let response2 = await axios.request(reqOptions2);
-  
+
         const allDoctors = response1.data.data; // All available doctors
         const registeredDoctors = response2.data.data; // Doctors already registered
-  
+
         // Map through all doctors and check if they are present in the registeredDoctors list by comparing their IDs
         const updatedDoctors = allDoctors.map((doctor) => {
           const isAdded = registeredDoctors.some(
@@ -42,7 +42,7 @@ const DoctorAddition = ({ handleclose }) => {
           );
           return { ...doctor, added: isAdded };
         });
-  
+
         setDoctors(updatedDoctors);
       } catch (error) {
         console.error("Error fetching doctors:", error);
@@ -50,10 +50,9 @@ const DoctorAddition = ({ handleclose }) => {
         setLoading(false);
       }
     };
-  
+
     fetchDoctors();
   }, []);
-  
 
   const handleToggle = (index) => {
     setCurrentDoctor(doctors[index]);
@@ -68,33 +67,30 @@ const DoctorAddition = ({ handleclose }) => {
           ? { ...doctor, added: !doctor.added }
           : doctor
       );
-   
-  
+
       let headersList = {
-        "Accept": "*/*",
+        Accept: "*/*",
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${localStorage.getItem("accessToken")}`
+        Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
       };
 
       const url = currentDoctor.added
-        ? "http://localhost:8000/api/v1/hospital/remove-doctor"
-        : "http://localhost:8000/api/v1/hospital/add-doctor";
-      
+        ? `${process.env.BACKEND_API}/hospital/remove-doctor`
+        : `${process.env.BACKEND_API}/hospital/add-doctor`;
 
-        let bodyContent = currentDoctor.added
+      let bodyContent = currentDoctor.added
         ? JSON.stringify({ doctor_id: currentDoctor._id })
         : JSON.stringify({ username: currentDoctor.user.username });
-      
-  
+
       let reqOptions = {
         url: url,
         method: currentDoctor.added ? "DELETE" : "POST",
         headers: headersList,
         data: bodyContent,
       };
-  
+
       let response = await axios.request(reqOptions);
-   
+
       if (response.status === 200) {
         setDoctors(updatedDoctors);
       } else {
@@ -108,7 +104,7 @@ const DoctorAddition = ({ handleclose }) => {
       setCurrentDoctor(null);
     }
   };
-  
+
   const handleCancel = () => {
     setShowModal(false);
     setCurrentDoctor(null);
@@ -155,13 +151,12 @@ const DoctorAddition = ({ handleclose }) => {
                 </div>
               </div>
               <button
-                  onClick={() => handleToggle(doctors.indexOf(doctor))}
-                  className={`px-3 py-1 rounded ${doctor.added ? "bg-red-500 text-white" : "bg-blue-500 text-white"}`}
-                  disabled={isSubmitting}
-                >
-                  {doctor.added ? "Remove" : "Add"}
-                </button>
-
+                onClick={() => handleToggle(doctors.indexOf(doctor))}
+                className={`px-3 py-1 rounded ${doctor.added ? "bg-red-500 text-white" : "bg-blue-500 text-white"}`}
+                disabled={isSubmitting}
+              >
+                {doctor.added ? "Remove" : "Add"}
+              </button>
             </div>
           ))
         )}
@@ -170,7 +165,12 @@ const DoctorAddition = ({ handleclose }) => {
         )}
       </div>
       {showModal && (
-        <AddremovePopup onClose={handleCancel} isSubmitting={isSubmitting} onConfirm={handleConfirm} message={`Are you sure you want to ${currentDoctor?.added ? "remove" : "add"} ${currentDoctor?.user.fullName}?`} />
+        <AddremovePopup
+          onClose={handleCancel}
+          isSubmitting={isSubmitting}
+          onConfirm={handleConfirm}
+          message={`Are you sure you want to ${currentDoctor?.added ? "remove" : "add"} ${currentDoctor?.user.fullName}?`}
+        />
       )}
     </div>
   );

@@ -90,7 +90,7 @@ const SignUp = () => {
        }
 
        let reqOptions = {
-        url: "http://localhost:8000/api/v1/users/register",
+        url: `${process.env.BACKEND_API}/users/register`,
         method: "POST",
         headers: headersList,
         data:payload,

@@ -27,7 +27,7 @@ const NodeAddition = ({handleClose}) => {
       "sensorID": sensorID
     })
     let reqOptions = {
-      url: "http://localhost:8000/api/v1/hospital/add-sensor",
+      url: `${process.env.BACKEND_API}/hospital/add-sensor`,
       method: "POST",
       headers: headersList,
       data: bodyContent,

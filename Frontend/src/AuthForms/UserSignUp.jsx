@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
-// InputField.js
+
 const InputField = ({ label, id, name, type = "text", value, onChange, required = false }) => (
   <div>
     <label htmlFor={id} className="block text-sm font-medium leading-6 text-black">

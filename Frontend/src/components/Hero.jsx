@@ -1,4 +1,4 @@
-import React from "react";
+
 
 const Hero = ({ mainHeading, subHeading, paragraph }) => {
   return (

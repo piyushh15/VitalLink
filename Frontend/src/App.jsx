@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import HomePage from './components/HomePage';
 import Login from './AuthForms/Login';
-import SignUp from './AuthForms/Signup';
+import UserSignUp from './AuthForms/UserSignUp';
 import DoctorPanel from './Panel/DoctorPanel';
 import AdminPanel from './Panel/AdminPanel';
 import AdminPanelPatients from './Dataviewer/AdminPanelPatients';
@@ -16,7 +16,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<SignUp />} />
+          <Route path="/signup" element={<UserSignUp />} />
           
           {/* Wrap admin routes with AdminProvider */}
           <Route 

@@ -27,7 +27,7 @@ export const AdminProvider = ({ children }) => {
       };
 
       const reqOptions = {
-        url: `${process.env.BACKEND_API}/users/current-user`,
+        url: `${import.meta.env.VITE_BACKEND_API}/users/current-user`,
         method: "GET",
         headers: headersList,
       };
@@ -68,7 +68,7 @@ export const AdminProvider = ({ children }) => {
       const bodyContent = JSON.stringify({ "patient-id": patientId });
 
       const reqOptions = {
-        url: `${process.env.BACKEND_API}/hospital/remove-patient`,
+        url: `${import.meta.env.VITE_BACKEND_API}/hospital/remove-patient`,
         method: "DELETE",
         headers: headersList,
         data: bodyContent,

@@ -27,7 +27,7 @@ const NodeAddition = ({handleClose}) => {
       "sensorID": sensorID
     })
     let reqOptions = {
-      url: `${process.env.BACKEND_API}/hospital/add-sensor`,
+      url: `${import.meta.env.VITE_BACKEND_API}/hospital/add-sensor`,
       method: "POST",
       headers: headersList,
       data: bodyContent,

@@ -22,7 +22,7 @@ const AdminPanelHospitalised = () => {
     setIsSubmitting(true);
     try {
       await axios.patch(
-        `${process.env.BACKEND_API}/hospital/remove-patient`,
+        `${import.meta.env.VITE_BACKEND_API}/hospital/remove-patient`,
         { patient_id: selectedPatientId },
         {
           headers: {

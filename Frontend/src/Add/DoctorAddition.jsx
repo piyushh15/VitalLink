@@ -19,12 +19,12 @@ const DoctorAddition = ({ handleclose }) => {
           Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
         };
         let reqOptions1 = {
-          url: `${process.env.BACKEND_API}/hospital/get-doctors`,
+          url: `${import.meta.env.VITE_BACKEND_API}/hospital/get-doctors`,
           method: "GET",
           headers: headersList,
         };
         let reqOptions2 = {
-          url: `${process.env.BACKEND_API}/hospital/get-reg-doctors`,
+          url: `${import.meta.env.VITE_BACKEND_API}/hospital/get-reg-doctors`,
           method: "GET",
           headers: headersList,
         };
@@ -75,8 +75,8 @@ const DoctorAddition = ({ handleclose }) => {
       };
 
       const url = currentDoctor.added
-        ? `${process.env.BACKEND_API}/hospital/remove-doctor`
-        : `${process.env.BACKEND_API}/hospital/add-doctor`;
+        ? `${import.meta.env.VITE_BACKEND_API}/hospital/remove-doctor`
+        : `${import.meta.env.VITE_BACKEND_API}/hospital/add-doctor`;
 
       let bodyContent = currentDoctor.added
         ? JSON.stringify({ doctor_id: currentDoctor._id })

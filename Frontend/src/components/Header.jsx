@@ -1,4 +1,4 @@
-import React, { useEffect, useState, memo } from "react";
+import { useEffect, useState, memo } from "react";
 import NavTitle from "../assets/VitalLinkLogo.jpeg.jpg";
 import AdminDropDown from "./Button/AdminDropDown";
 import { Link } from "react-router-dom"
@@ -61,7 +61,7 @@ const Logout = () => {
       "Authorization":`Bearer ${accessToken}`,
     }
     let reqOptions = {
-      url: `${process.env.BACKEND_API}/users/logout`,
+      url: `${import.meta.env.VITE_BACKEND_API}/users/logout`,
       method: "POST",
       headers: headersList,
     }
@@ -120,7 +120,7 @@ const AddPatients = () => {
         Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
       };
       const reqOptions = {
-        url: `${process.env.BACKEND_API}/users/current-user`,
+        url: `${import.meta.env.VITE_BACKEND_API}/users/current-user`,
         method: "GET",
         headers: headerList,
       };
@@ -150,7 +150,7 @@ const AddPatients = () => {
       };
   
       const reqOptions = {
-        url: `${process.env.BACKEND_API}/doctor/${actionType === 'add' ? 'add-patient' : 'remove-patient'}`,
+        url: `${import.meta.env.VITE_BACKEND_API}/doctor/${actionType === 'add' ? 'add-patient' : 'remove-patient'}`,
         method: actionType === 'add' ? "POST" : "DELETE",
         headers: headersList,
         data: patientData,
@@ -205,7 +205,7 @@ const AddPatients = () => {
       };
 
       const reqOptions = {
-        url: `${process.env.BACKEND_API}/hospital/get-admitted-patients?user_id=${e.target.value}`,
+        url: `${import.meta.env.VITE_BACKEND_API}/hospital/get-admitted-patients?user_id=${e.target.value}`,
         method: "GET",
         headers: headersList,
       };

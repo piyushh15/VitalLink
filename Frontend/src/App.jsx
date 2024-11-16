@@ -1,30 +1,25 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import HomePage from './components/HomePage';
-
 import Login from './AuthForms/Login';
-import SignUp from './AuthForms/SignUp';
-
+import SignUp from './AuthForms/Signup';
 import DoctorPanel from './Panel/DoctorPanel';
 import AdminPanel from './Panel/AdminPanel';
 import AdminPanelPatients from './Dataviewer/AdminPanelPatients';
 import AdminPanelDoctors from './Dataviewer/AdminPanelDoctors';
 import AdminPanelHospitalised from './Dataviewer/AdminPanelHospitalised';
-
-import { AdminProvider } from './Panel/AdminContext'
+import { AdminProvider } from './Panel/AdminContext';
 
 const App = () => {
   return (
     <Router>
       <div>
         <Routes>
-          <Route exact path="/" element={<HomePage />} />
+          <Route path="/" element={<HomePage />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
           
-          <Route exact path="/login" element={<Login />} />
-          <Route exact path="/signup" element={<SignUp />} />
-
           {/* Wrap admin routes with AdminProvider */}
           <Route 
-            exact 
             path="/adminpanel" 
             element={
               <AdminProvider>
@@ -33,7 +28,6 @@ const App = () => {
             }
           />
           <Route 
-            exact 
             path="/admin-patients" 
             element={
               <AdminProvider>
@@ -42,7 +36,6 @@ const App = () => {
             }
           />
           <Route 
-            exact 
             path="/admin-doctors" 
             element={
               <AdminProvider>
@@ -51,7 +44,6 @@ const App = () => {
             }
           />
           <Route 
-            exact 
             path="/admin-hospitalised" 
             element={
               <AdminProvider>
@@ -59,8 +51,8 @@ const App = () => {
               </AdminProvider>
             }
           />
-
-          <Route exact path="/doctorpanel" element={<DoctorPanel />} />
+          
+          <Route path="/doctorpanel" element={<DoctorPanel />} />
         </Routes>
       </div>
     </Router>

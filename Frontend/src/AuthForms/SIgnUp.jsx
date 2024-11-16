@@ -90,7 +90,7 @@ const SignUp = () => {
        }
 
        let reqOptions = {
-        url: `${process.env.BACKEND_API}/users/register`,
+        url: `${import.meta.env.VITE_BACKEND_API}/users/register`,
         method: "POST",
         headers: headersList,
         data:payload,

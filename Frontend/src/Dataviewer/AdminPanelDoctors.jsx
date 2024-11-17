@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useAdminContext } from "../Panel/AdminContext";
 import axios from "axios";
 import AddremovePopup from "../Add/AddremovePopup";

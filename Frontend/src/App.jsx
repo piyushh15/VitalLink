@@ -4,10 +4,11 @@ import Login from './AuthForms/Login';
 import UserSignUp from './AuthForms/UserSignUp';
 import DoctorPanel from './Panel/DoctorPanel';
 import AdminPanel from './Panel/AdminPanel';
-import AdminPanelPatients from './Dataviewer/AdminPanelPatients';
-import AdminPanelDoctors from './Dataviewer/AdminPanelDoctors';
-import AdminPanelHospitalised from './Dataviewer/AdminPanelHospitalised';
+import AdminPanelPatients from './AdminPanelDataViewer/AdminPanelPatients';
+import AdminPanelDoctors from './AdminPanelDataViewer/AdminPanelDoctors';
+import AdminPanelHospitalised from './AdminPanelDataViewer/AdminPanelHospitalised';
 import { AdminProvider } from './Panel/AdminContext';
+import PatientDataPanel from './Panel/PatientDataPanel'
 
 const App = () => {
   return (
@@ -53,6 +54,7 @@ const App = () => {
           />
           
           <Route path="/doctorpanel" element={<DoctorPanel />} />
+          <Route path="/PatientDataPanel" element={<PatientDataPanel/>}/>
         </Routes>
       </div>
     </Router>

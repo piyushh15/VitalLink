@@ -13,19 +13,23 @@ const addSensorData = asyncHandler(async (req, res) => {
 });
 
 const getSensorData = asyncHandler(async (req, res) => {
-  const { sensorID } = req.body;
-  if (!sensorID) {
-    throw new ApiError(400, "Sensor ID is required");
+  const { sensorID } = req.params; 
+
+  if (!sensorID || sensorID.trim() === "") {
+    throw new ApiError(400, "Sensor ID is required and cannot be empty");
   }
 
   const sensorData = await SensorData.find({ sensorID });
-  if (!sensorData) {
-    throw new ApiError(404, "Sensor data not found");
+
+  if (!sensorData || sensorData.length === 0) {
+    throw new ApiError(404, "No sensor data found for the provided Sensor ID");
   }
-  return res
-    .status(200)
-    .json(new ApiResponse(200, sensorData, "Sensor data fetched successfully"));
+
+  return res.status(200).json(
+    new ApiResponse(200, sensorData, "Sensor data fetched successfully")
+  );
 });
+
 
 export { addSensorData, getSensorData };
 

@@ -7,6 +7,6 @@ import {
 const router = Router();
 
 router.route("/add-sensor-data").post(addSensorData);
-router.route("/get-sensor-data").get(getSensorData);
+router.route("/get-sensor-data").post(getSensorData);
 
 export default router;

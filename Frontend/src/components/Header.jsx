@@ -76,7 +76,7 @@ const Logout = () => {
   }
  
   return (
-    <button onClick={handleclick} className="bg-iot-blue hover:bg-blue-600 text-white mx-2 px-4 py-2 rounded-lg">
+    <button onClick={handleclick} className="bg-iot-blue hover:bg-blue-600 text-white mx-2 px-4 py-2 rounded-lg font-poppins">
       Log Out
     </button>
   );
@@ -84,7 +84,7 @@ const Logout = () => {
 
 const Login = () => {
   return (
-    <button className="bg-iot-blue hover:bg-blue-600 text-white mx-2 px-4 py-2 rounded-lg">
+    <button className="bg-iot-blue hover:bg-blue-600 text-white mx-2 px-4 py-2 rounded-lg font-poppins">
       Log In
     </button>
   );
@@ -92,7 +92,7 @@ const Login = () => {
 
 const SignUp = () => {
   return (
-    <button className="bg-iot-blue hover:bg-blue-600 text-white mx-2 px-4 py-2 rounded-lg">
+    <button className="bg-iot-blue hover:bg-blue-600 text-white mx-2 px-4 py-2 rounded-lg font-poppins">
       Sign Up
     </button>
   );

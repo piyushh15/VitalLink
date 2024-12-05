@@ -69,29 +69,20 @@ const DoctorPanel = () => {
     setFilteredPatients(filtered);
   };
 
-  const showReport = async (sensorID) => {
-    try {
-      const headerList = {
-        Accept: "*/*",
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-      };
-      const reqOptions = {
-        url: `${import.meta.env.VITE_BACKEND_API}/sensor/get-sensor-data/${sensorID}`,
-        method: "GET",
-        headers: headerList,
-      };
-  
-      const response = await axios.request(reqOptions);
-      console.log(response.data);
-  
-      if (response.status === 200) {
-        navigate("/PatientDataPanel", { state: { sensorData: response.data.data } });
-      }
-    } catch (error) {
-      console.error("Error fetching sensor data:", error);
-    }
+  const showReport = (sensorID, patientName, patientAge, patientGender, hospitalID) => {
+    const hospitalName = hospitals.find((hospital) => hospital._id === hospitalID)?.fullName || "Unknown";
+    
+    navigate("/PatientDataPanel", {
+      state: {
+        sensorID,
+        patientName,
+        patientAge,
+        patientGender,
+        hospitalName,
+      },
+    });
   };
+  
   
 
   return (
@@ -134,30 +125,49 @@ const DoctorPanel = () => {
                 </tr>
               </thead>
               <tbody>
-                {filteredPatients.map((patient, index) => (
-                  <tr
-                    key={patient._id}
-                    className="hover:bg-blue-100 border-b font-palanquin text-center text-xl"
-                  >
-                    <td className="p-4">{index + 1}</td>
-                    <td className="p-4">{patient.fullName}</td>
-                    <td className="p-4">{patient.age}</td>
-                    <td className="p-4">{patient.sensor_id.sensorID}</td>
-                    <td className="p-4">
-                      {hospitals.find(
-                        (hospital) => hospital._id === patient.hospital_id
-                      )?.fullName || "Unknown"}
-                    </td>
-                    <td className="p-4 flex items-center justify-center">
-                      <button
-                        className="bg-blue-500 text-white p-2 rounded-lg"
-                        onClick={() => showReport(patient.sensor_id.sensorID)}
-                      >
-                        Show Report
-                      </button>
+                {filteredPatients.length > 0 ? (
+                  filteredPatients.map((patient, index) => (
+                    <tr
+                      key={patient._id}
+                      className="hover:bg-blue-100 border-b font-palanquin text-center text-xl"
+                    >
+                      <td className="p-4">{index + 1}</td>
+                      <td className="p-4">{patient.fullName || "Unknown"}</td>
+                      <td className="p-4">{patient.age || "N/A"}</td>
+                      <td className="p-4">{patient.sensor_id?.sensorID || "N/A"}</td>
+                      <td className="p-4">
+                        {hospitals.find(
+                          (hospital) => hospital._id === patient.hospital_id
+                        )?.fullName || "Unknown"}
+                      </td>
+                      <td className="p-4 flex items-center justify-center">
+                        <button
+                          className="bg-blue-500 hover:bg-blue-600 text-white p-2 rounded-lg"
+                          onClick={() =>
+                            showReport(
+                              patient.sensor_id?.sensorID,
+                              patient.fullName,
+                              patient.age,
+                              patient.gender,
+                              patient.hospital_id
+                            )
+                          }
+                        >
+                          Show Report
+                        </button>
+                      </td>
+                    </tr>
+                  ))
+                ) : (
+                  <tr>
+                    <td
+                      colSpan="6"
+                      className="text-center text-gray-500 font-medium py-4"
+                    >
+                      No patients found.
                     </td>
                   </tr>
-                ))}
+                )}
               </tbody>
             </table>
           </div>
